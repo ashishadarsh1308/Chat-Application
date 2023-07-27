@@ -12,7 +12,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const userExits = await User.findOne({ email })
 
-    if (userExits) {
+    if (userExits) { 
         res.status(400);
         throw new Error("User already exists")
     }
@@ -64,7 +64,7 @@ const allusers = asyncHandler(async (req, res) => {
             { email: { $regex: req.query.search, $options: "i" } },
         ]
     } : {}
-    const users = await User.find(keyword).find({ _id: { $ne: req.user._id} })
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } })
     res.send(users)
     // console.log(keyword);
 })
